@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+using static F1_Manager_2._0.Teams;
 
 namespace F1_Manager_2._0
 {
@@ -13,11 +14,10 @@ namespace F1_Manager_2._0
             teamsInRace = teams;
         }
 
-        public void SimulateRace()
+        public void SimulateRace(PlayerTeam playerteam)
         {
             Console.Clear();
             Console.WriteLine("Race simulation started!");
-
             List<string> pool = new List<string>();
             List<string> results = new List<string>();
             Random rnd = new Random();
@@ -34,15 +34,21 @@ namespace F1_Manager_2._0
                     pool.Add(team.Driver2Name);
                 }
             }
-
-            // Výber top 20 unikátnych jazdcov
-            while (results.Count < 20)
+            // Pridanie hráčovho tímu do poolu
+            for (int i = 0; i < playerteam.driver1rating * playerteam.TeamPower; i++)
+            {
+                pool.Add(playerteam.driver1name);
+            }
+            for (int i = 0; i < playerteam.driver2rating * playerteam.TeamPower; i++)
+            {
+                pool.Add(playerteam.driver2name);
+            }
+            // Výber top 22 unikátnych jazdcov
+            while (results.Count < 22)
             {
                 string name = pool[rnd.Next(pool.Count)];
                 if (!results.Contains(name))
-                {
                     results.Add(name);
-                }
             }
 
             // Priraďovanie bodov a výpis výsledkov
@@ -79,11 +85,47 @@ namespace F1_Manager_2._0
                         team.TeamPoints += pts;
                         break;
                     }
+                    else if (name == playerteam.driver1name)
+                    {
+                        playerteam.pointsDriver1 += pts;
+                        break;
+
+                    }
+                    else if (name == playerteam.driver2name)
+                    {
+                        playerteam.pointsDriver2 += pts;
+                        break;
+                    }
                 }
+
                 Console.WriteLine($"{place}. {name} (+{pts} bodov)");
                 Thread.Sleep(100);
                 place++;
+                Random rand = new Random(); // jeden Random pre všetko
+
+                foreach (var driver in teamsInRace)
+                {
+                    int A = rand.Next(1, 1);          // zlepšenie 1-3 bodov
+                    int random1 = rnd.Next(0, 101);  // šanca 25%
+
+                    if (random1 < 15) // 15% šanca
+                    {
+                        // vyber náhodne Driver1 alebo Driver2
+                        if (rand.Next(0, 2) == 0)
+                        {
+                            driver.Driver1Rating += 1;
+                        }
+                        else
+                        {
+                            driver.Driver2Rating += 1;
+                        }
+                    }
+                }
             }
+            Console.WriteLine("Pre ukončenie preteku stlačte ľubovoľnú klávesu...");
+            Console.ReadLine();
+            Console.Clear();
+            playerteam.Races++;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using F1_Manager_2._0;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 namespace F1_Manager
@@ -51,24 +52,34 @@ namespace F1_Manager
         }
 
         // Funkcia na kontrolu, či sa dnes jazdí
-        public void CheckRaceDay(int currentDay)
+        public bool CheckRaceDay(int currentDay, PlayerTeam playerteam)
         {
             foreach (var race in AllRaces)
             {
-                if (race.RaceDay == currentDay - 1)
+                if (race.RaceDay == currentDay)
                 {
                     List<Teams> allTeams = Teams.TeamList.AllTeams;
                     RaceSimulation raceSimulation = new RaceSimulation(allTeams);
-                    Console.WriteLine($"Vitaj na trati {race.TrackName}");
-                    Console.WriteLine("Ak si chceš pozrieť rebríček tímov a jazdcov");
-                    raceSimulation.SimulateRace();
-                    raceday = true;
-                }
-                else
-                {
-                    raceday = false;
+                    raceSimulation.SimulateRace(playerteam);
+                    return true; // JE ZÁVOD
                 }
             }
+
+            return false; // NIE JE ZÁVOD
         }
+
+        public bool IsRaceDay(int currentDay)
+        {
+            foreach (var race in AllRaces)
+            {
+                if (race.RaceDay - 1 == currentDay)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
     }
 }

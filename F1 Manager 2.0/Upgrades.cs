@@ -8,6 +8,9 @@ namespace F1_Manager
 {
     public class Upgrades
     {
+        public int ManufacturingLenght;
+        public int efectivity;
+        public List<string> nameofupgrades = new List<string>();
         public List<string> Parts = new List<string>();
 
         public void AddUpgrades()
