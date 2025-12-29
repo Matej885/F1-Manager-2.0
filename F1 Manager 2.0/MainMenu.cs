@@ -8,6 +8,7 @@ namespace F1_Manager_2._0
     public class MainMenu
     {
         public bool raceday = false;
+        public int efectivity;
         public void Menu(Teams teams, PlayerTeam playerTeam)
         {
             List<Teams> allTeams = Teams.TeamList.AllTeams;
@@ -42,8 +43,9 @@ namespace F1_Manager_2._0
                     while (i < 4)
                     {
                         int price = randomprice.Next(1500, 10000);
+                        efectivity = random.Next(1, 20);
                         int index = random.Next(upgrades.Parts.Count);
-                        Console.WriteLine($"{index} - {upgrades.Parts[index]} - {price} $");
+                        Console.WriteLine($"{index} - {upgrades.Parts[index]}. - {price} $ - {efectivity} points of efectivity");
                         upgrades.Parts.RemoveAt(index);
                         i++;
                     }
@@ -51,6 +53,27 @@ namespace F1_Manager_2._0
                     upgrades.AddUpgrades();
                     Console.WriteLine("Enter the number of the upgrade you want to buy or press Enter to go back:");
                     string upgradeInput = Console.ReadLine();
+                    if (int.TryParse(upgradeInput, out int upgradeIndex))
+                    {
+                        if (upgradeIndex >= 0 && upgradeIndex < upgrades.Parts.Count)
+                        {
+                            int upgradePrice = randomprice.Next(1500, 10000);
+                            if (playerTeam.Money >= upgradePrice)
+                            {
+                                playerTeam.TeamPower += efectivity;
+                                playerTeam.Money -= upgradePrice;
+                                Console.WriteLine($"You have purchased {upgrades.Parts[upgradeIndex]} for {upgradePrice} $. Team Power is now {playerTeam.TeamPower}.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("You do not have enough money to purchase this upgrade.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid upgrade selection.");
+                        }
+                    }
                     Console.ReadLine();
                 }
                 else

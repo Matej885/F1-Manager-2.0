@@ -15,7 +15,6 @@ namespace F1_Manager_2._0
         public int driver2rating;
         public int pointsDriver1;
         public int pointsDriver2;
-        public int UpgradesManufacturing = 0;
         public int TeamPower = 10;
         public int Money { get; set; } = 10000;
     }
