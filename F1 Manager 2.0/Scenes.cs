@@ -88,7 +88,7 @@ namespace F1_Manager_2._0
                     playerTeam.Money -= driverCost;           // odpočítame cenu
                     playerTeam.driver1name = firstDriver.Name;
                     playerTeam.driver1rating = firstDriver.Rating;
-
+                    playerTeam.driver2cost = driverCost;
                     // Odstránenie jazdca z pôvodného tímu
                     firstDriver.Team.RemoveDriver(firstDriver.Position);
                     allDrivers.RemoveAt(input1); // aby sa neopakoval
@@ -137,7 +137,7 @@ namespace F1_Manager_2._0
                     playerTeam.Money -= driverCost;           // odpočítame cenu
                     playerTeam.driver2name = secondDriver.Name;
                     playerTeam.driver2rating = secondDriver.Rating;
-
+                    playerTeam.driver2cost = driverCost;
                     // Odstránenie jazdca z pôvodného tímu
                     secondDriver.Team.RemoveDriver(secondDriver.Position);
                     allDrivers.RemoveAt(input2); // aby sa neopakoval

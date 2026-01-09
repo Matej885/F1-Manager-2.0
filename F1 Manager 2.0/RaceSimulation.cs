@@ -77,7 +77,6 @@ namespace F1_Manager_2._0
                     {
                         team.Driver1Points += pts;
                         team.TeamPoints += pts;
-                        break;
                     }
                     else if (name == team.Driver2Name)
                     {
@@ -88,12 +87,93 @@ namespace F1_Manager_2._0
                     else if (name == playerteam.driver1name)
                     {
                         playerteam.pointsDriver1 += pts;
-                        break;
+                        if (playerteam.teamtype == "1")
+                        {
+                            if (place >= 5)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
 
+                            }
+                        }
+                        else if (playerteam.teamtype == "2")
+                        {
+                            if (place >= 8)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else if (playerteam.teamtype == "3")
+                        {
+                            if (place >= 10)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else if (playerteam.teamtype == "4")
+                        {
+                            if (place >= 12)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
+                        break;
                     }
                     else if (name == playerteam.driver2name)
                     {
                         playerteam.pointsDriver2 += pts;
+                        if (playerteam.teamtype == "1")
+                        {
+                            if (place >= 5)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        else if (playerteam.teamtype == "2")
+                        {
+                            if (place >= 8)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else if (playerteam.teamtype == "3")
+                        {
+                            if (place >= 10)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
+                        else if (playerteam.teamtype == "4")
+                        {
+                            if (place >= 12)
+                            {
+                                playerteam.Money += 100000;
+                            }
+                            else
+                            {
+                            }
+                        }
                         break;
                     }
                 }
