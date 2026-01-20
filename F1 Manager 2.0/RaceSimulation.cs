@@ -48,9 +48,11 @@ namespace F1_Manager_2._0
             {
                 string name = pool[rnd.Next(pool.Count)];
                 if (!results.Contains(name))
+                {
                     results.Add(name);
+                    pool.RemoveAll(n => n == name);                     // Odstrániť všetky výskyty tohto mena z poolu
+                }
             }
-
             // Priraďovanie bodov a výpis výsledkov
             int place = 1;
             foreach (string name in results)
@@ -177,30 +179,20 @@ namespace F1_Manager_2._0
                         break;
                     }
                 }
-
-                Console.WriteLine($"{place}. {name} (+{pts} bodov)");
+                if (name == playerteam.driver1name || name == playerteam.driver2name)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"{place}. {name} (+{pts} bodov)");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"{place}. {name} (+{pts} bodov)");
+                }
                 Thread.Sleep(100);
                 place++;
-                Random rand = new Random(); // jeden Random pre všetko
 
-                foreach (var driver in teamsInRace)
-                {
-                    int A = rand.Next(1, 1);          // zlepšenie 1-3 bodov
-                    int random1 = rnd.Next(0, 101);  // šanca 25%
 
-                    if (random1 < 15) // 15% šanca
-                    {
-                        // vyber náhodne Driver1 alebo Driver2
-                        if (rand.Next(0, 2) == 0)
-                        {
-                            driver.Driver1Rating += 1;
-                        }
-                        else
-                        {
-                            driver.Driver2Rating += 1;
-                        }
-                    }
-                }
             }
             Console.WriteLine("Pre ukončenie preteku stlačte ľubovoľnú klávesu...");
             Console.ReadLine();

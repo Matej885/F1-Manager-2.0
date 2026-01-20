@@ -1,6 +1,7 @@
 ﻿using F1_Manager;
 using System;
 using System.Collections.Generic;
+using System.Media;
 
 namespace F1_Manager_2._0
 {
@@ -31,16 +32,16 @@ namespace F1_Manager_2._0
                 string choice = Console.ReadLine();
                 switch (choice)
                 {
-                    case "1": playerTeam.Money = 80000000; playerTeam.TeamPower = 60; playerTeam.teamtype = "1"; break;
-                    case "2": playerTeam.Money = 140000000; playerTeam.TeamPower = 70; playerTeam.teamtype = "2"; break;
-                    case "3": playerTeam.Money = 170000000; playerTeam.TeamPower = 80; playerTeam.teamtype = "3"; break;
-                    case "4": playerTeam.Money = 210000000; playerTeam.TeamPower = 90; playerTeam.teamtype = "4"; break;
+                    case "1": playerTeam.Money = 80000000; playerTeam.TeamPower = 35; playerTeam.teamtype = "1"; break;
+                    case "2": playerTeam.Money = 140000000; playerTeam.TeamPower = 50; playerTeam.teamtype = "2"; break;
+                    case "3": playerTeam.Money = 170000000; playerTeam.TeamPower = 1000; playerTeam.teamtype = "3"; break;
+                    case "4": playerTeam.Money = 210000000; playerTeam.TeamPower = 100; playerTeam.teamtype = "4"; break;
                     default: Console.WriteLine("Neplatná voľba"); continue;
                 }
                 return playerTeam;
-                break;
             }
         }
+
         public PlayerTeam ChooseDrivers(PlayerTeam playerTeam)
         {
             Console.Clear();
@@ -51,25 +52,29 @@ namespace F1_Manager_2._0
                 allDrivers.Add((team.Driver1Name, team.Driver1Rating, team, 1));
                 allDrivers.Add((team.Driver2Name, team.Driver2Rating, team, 2));
             }
+            
+
             // --- Výber prvého jazdca ---
             while (true)
             {
                 Console.WriteLine("\nVyber prvého jazdca:");
                 Console.WriteLine($"Máš {playerTeam.Money.ToString("N0")}$");
 
-                // Výpis všetkých jazdcov s cenou
                 for (int i = 0; i < allDrivers.Count; i++)
                 {
+                    if (allDrivers[i].Name == "Josef Král" || allDrivers[i].Name == "Sebastian Vettel")
+                    {
+                        continue;
+                    }
                     int cost = allDrivers[i].Position == 1 ? allDrivers[i].Team.Driver1Cost : allDrivers[i].Team.Driver2Cost;
-
                     Console.Write($"{i + 1}: {allDrivers[i].Name} ({allDrivers[i].Team.TeamName}) - Cena contractu: ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"{cost.ToString("N0")}$");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                 }
+                Console.WriteLine("Sebastian Vettel ani Josef Král s tebou nechceli podísať contract!");
 
-                // Bezpečný vstup
                 if (!int.TryParse(Console.ReadLine(), out int input1) || input1 < 1 || input1 > allDrivers.Count)
                 {
                     Console.Clear();
@@ -77,22 +82,18 @@ namespace F1_Manager_2._0
                     continue;
                 }
 
-                input1 -= 1; // index v poli začína od 0
-
+                input1 -= 1;
                 var firstDriver = allDrivers[input1];
                 int driverCost = firstDriver.Position == 1 ? firstDriver.Team.Driver1Cost : firstDriver.Team.Driver2Cost;
 
-                // Skontrolujeme, či má hráč dosť peňazí
                 if (playerTeam.Money >= driverCost)
                 {
-                    playerTeam.Money -= driverCost;           // odpočítame cenu
+                    playerTeam.Money -= driverCost;
                     playerTeam.driver1name = firstDriver.Name;
                     playerTeam.driver1rating = firstDriver.Rating;
-                    playerTeam.driver2cost = driverCost;
-                    // Odstránenie jazdca z pôvodného tímu
+                    playerTeam.driver1cost = driverCost;
                     firstDriver.Team.RemoveDriver(firstDriver.Position);
-                    allDrivers.RemoveAt(input1); // aby sa neopakoval
-
+                    allDrivers.RemoveAt(input1);
                     Console.Clear();
                     break;
                 }
@@ -112,14 +113,17 @@ namespace F1_Manager_2._0
 
                 for (int i = 0; i < allDrivers.Count; i++)
                 {
-                    int cost = allDrivers[i].Position == 1 ? allDrivers[i].Team.Driver1Cost : allDrivers[i].Team.Driver2Cost;
+                    if (allDrivers[i].Name == "Josef Král" || allDrivers[i].Name == "Sebastian Vettel")
+                        continue;
 
+                    int cost = allDrivers[i].Position == 1 ? allDrivers[i].Team.Driver1Cost : allDrivers[i].Team.Driver2Cost;
                     Console.Write($"{i + 1}: {allDrivers[i].Name} ({allDrivers[i].Team.TeamName}) - Cena contractu: ");
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"{cost.ToString("N0")}$");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine();
                 }
+                Console.WriteLine("Sebastian Vettel ani Josef Král s tebou nechceli podísať contract!");
 
                 if (!int.TryParse(Console.ReadLine(), out int input2) || input2 < 1 || input2 > allDrivers.Count)
                 {
@@ -128,20 +132,19 @@ namespace F1_Manager_2._0
                     continue;
                 }
 
-                input2 -= 1; // index začína od 0
+                input2 -= 1;
                 var secondDriver = allDrivers[input2];
                 int driverCost = secondDriver.Position == 1 ? secondDriver.Team.Driver1Cost : secondDriver.Team.Driver2Cost;
 
                 if (playerTeam.Money >= driverCost)
                 {
-                    playerTeam.Money -= driverCost;           // odpočítame cenu
+                    Teams teams = new Teams();
+                    playerTeam.Money -= driverCost;
                     playerTeam.driver2name = secondDriver.Name;
                     playerTeam.driver2rating = secondDriver.Rating;
                     playerTeam.driver2cost = driverCost;
-                    // Odstránenie jazdca z pôvodného tímu
                     secondDriver.Team.RemoveDriver(secondDriver.Position);
-                    allDrivers.RemoveAt(input2); // aby sa neopakoval
-
+                    allDrivers.RemoveAt(input2);
                     Console.Clear();
                     break;
                 }
@@ -159,23 +162,20 @@ namespace F1_Manager_2._0
     // --- Pomocná metóda na odstránenie jazdca z tímu ---
     public static class TeamFunctions
     {
-        // GLOBÁLNY POOL NÁHRADNÍKOV
-        private static List<(string Name, int Rating)> replacements =
+        public static List<(string Name, int Rating)> replacements =
             new List<(string, int)>
             {
-            ("Valtteri Bottas", 30),
-            ("Josef Král", 15)
+                ("Sebastian Vettel", 80),
+                ("Josef Král", 15)
             };
 
         public static void RemoveDriver(this Teams team, int position)
         {
-            // ak už nemáme koho dosadiť
             if (replacements.Count == 0)
                 return;
 
-            // vezmeme PRVÉHO z poolu
             var replacement = replacements[0];
-            replacements.RemoveAt(0); // DÔLEŽITÉ – odstránime ho
+            replacements.RemoveAt(0);
 
             if (position == 1)
             {
@@ -192,7 +192,3 @@ namespace F1_Manager_2._0
         }
     }
 }
-
-
-
-

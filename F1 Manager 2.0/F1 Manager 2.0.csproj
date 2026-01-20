@@ -8,4 +8,96 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Sounds\Albon_celebration.wav" />
+    <None Remove="Sounds\Alonso_celebration.wav" />
+    <None Remove="Sounds\Antonelli_celebration.wav" />
+    <None Remove="Sounds\Bearman_celebration.wav" />
+    <None Remove="Sounds\champion.wav" />
+    <None Remove="Sounds\Colapinto_celebration.wav" />
+    <None Remove="Sounds\Gasly_celebration.wav" />
+    <None Remove="Sounds\Hadjar_celebration.wav" />
+    <None Remove="Sounds\Hamilton_celebration.wav" />
+    <None Remove="Sounds\Hulkenberg_celebration.wav" />
+    <None Remove="Sounds\Lawson_celebration.wav" />
+    <None Remove="Sounds\Leclerc_celebration.wav" />
+    <None Remove="Sounds\Norris_celebration.wav" />
+    <None Remove="Sounds\Ocon_celebration.wav" />
+    <None Remove="Sounds\Piastri_celebration.wav" />
+    <None Remove="Sounds\Russell_celebration.wav" />
+    <None Remove="Sounds\Sainz_celebration.wav" />
+    <None Remove="Sounds\SECRET1.wav" />
+    <None Remove="Sounds\Stroll_celebration.wav" />
+    <None Remove="Sounds\Tsunoda_celebration.wav" />
+    <None Remove="Sounds\Verstappen_celebration.wav" />
+    <None Remove="Sounds\Vettel_celebration.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Sounds\Albon_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Alonso_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Antonelli_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Bearman_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Colapinto_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Gasly_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hadjar_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hamilton_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Hulkenberg_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Lawson_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Leclerc_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Norris_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Ocon_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Piastri_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Russell_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Sainz_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Stroll_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Tsunoda_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Verstappen_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\Vettel_celebration.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Windows.Extensions" Version="10.0.2" />
+  </ItemGroup>
+
 </Project>

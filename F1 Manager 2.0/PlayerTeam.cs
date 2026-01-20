@@ -22,5 +22,7 @@ namespace F1_Manager_2._0
         public int TeamPower = 10;
         public int Money { get; set; } = 10000;
         public string teamtype { get; set; }
+        public int effectivity = 0;
+        public string UpgradeName = "";
     }
 }
