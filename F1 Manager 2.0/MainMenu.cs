@@ -263,7 +263,7 @@ namespace F1_Manager_2._0
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Nemáš dosť peňazí na zaplatenie oboch jazdcov. Budeš si musieť vybrať nových jazdcov v ďalšom menu.");
+                                    Console.WriteLine("Nemáš dosť peňazí na zaplatenie oboch jazdcov. Budeš si musieť vybrať nových jazdcov v ďalšom menu."); 
                                     scenes.ChooseDrivers(playerTeam);
                                 }
                             }

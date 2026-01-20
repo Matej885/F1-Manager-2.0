@@ -10,6 +10,7 @@ namespace F1_Manager_2._0
         public PlayerTeam SetUp(Tracks tracks)
         {
             PlayerTeam playerTeam = new PlayerTeam();
+            Teams teams = new Teams();
             Console.Write("Napíš meno svojho tímu: ");
             playerTeam.teamName = Console.ReadLine();
             Console.WriteLine($"Budeš šéfovať {playerTeam.teamName}");
@@ -52,7 +53,7 @@ namespace F1_Manager_2._0
                 allDrivers.Add((team.Driver1Name, team.Driver1Rating, team, 1));
                 allDrivers.Add((team.Driver2Name, team.Driver2Rating, team, 2));
             }
-            
+
 
             // --- Výber prvého jazdca ---
             while (true)
